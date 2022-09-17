@@ -1,0 +1,26 @@
+.master-login-container {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+  align-items: center;
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .logo-container {
+    width: 100%;
+    text-align: center;
+
+    img {
+      width: 70vw;
+      margin: 0 0 3% 0;
+    }
+  }
+}
