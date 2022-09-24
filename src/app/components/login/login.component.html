@@ -6,20 +6,20 @@
     />
   </div>
 
-  <form class="login-form">
+  <form class="login-form" ngForm>
     <mat-form-field appearance="fill">
       <mat-label>Username</mat-label>
-      <input matInput placeholder="">
+      <input matInput placeholder="" [formControl]="usernameControl">
       <mat-icon matSuffix>person</mat-icon>
       <mat-hint>email address also works !</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="">
+      <input matInput placeholder="" type="password" [formControl]="passwdControl">
       <mat-icon matSuffix>lock</mat-icon>
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Login</button>
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
   </form>
 </div>

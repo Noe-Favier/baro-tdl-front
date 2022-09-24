@@ -74,9 +74,11 @@
           "configurations": {
             "production": {
               "browserTarget": "baro-tdl-front:build:production"
+
             },
             "development": {
               "browserTarget": "baro-tdl-front:build:development"
+
             }
           },
           "defaultConfiguration": "development"
