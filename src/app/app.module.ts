@@ -15,27 +15,31 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import {ReactiveFormsModule} from "@angular/forms";
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LogoutComponent } from './components/logout/logout.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     LoginComponent,
+    LogoutComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService
