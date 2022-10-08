@@ -16,9 +16,8 @@ export class RoleGuardService {
     // this will be passed from the route config
     // on the data property
     const expectedRole = route.data['expectedRole'];
-    const token = localStorage.getItem('token');
     // decode the token to get its payload
-    const tokenPayload: any = decode(this.tokenService.getToken(token));
+    const tokenPayload: any = decode(this.tokenService.getToken());
     if (
       !this.auth.isAuthenticated() ||
       tokenPayload.role !== expectedRole

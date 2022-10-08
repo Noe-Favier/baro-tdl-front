@@ -1,1 +1,18 @@
+<ng-container *ngIf="(router.url != '/login' && router.url != '/logout')">
+  <mat-toolbar>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+
+    <!-- USER BUTTON -->
+    <div *ngIf="user != undefined">
+      <button mat-stroked-button aria-label="navbar button 'account'">
+        <div class="text-icon-button">
+          <mat-icon>person</mat-icon>
+          {{user.username}}
+        </div>
+      </button>
+
+    </div>
+  </mat-toolbar>
+</ng-container>
 <router-outlet></router-outlet>

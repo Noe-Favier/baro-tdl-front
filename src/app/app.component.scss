@@ -1,1 +1,14 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+.spacer {
+  flex: 1 1 auto;
+}
+
+.warn{
+  color: red;
+}
+
+.text-icon-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

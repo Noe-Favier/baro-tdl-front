@@ -19,7 +19,6 @@ export class LogoutComponent implements OnInit {
   private timeout: number | undefined;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.authService.logout();
   }
 
   ngOnInit(): void {
