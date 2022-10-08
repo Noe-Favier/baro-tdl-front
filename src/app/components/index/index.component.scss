@@ -1,0 +1,40 @@
+.ctg_container {
+  margin: 1%;
+
+  .main-container {
+    display: flex;
+    justify-content: space-between;
+
+    .ctg_name {
+      font-size: 140%;
+
+    }
+
+    .item-tracking {
+      font-size: 130%;
+      display: flex;
+      align-items: center;
+
+      .checked-title {
+        font-weight: lighter;
+      }
+    }
+  }
+
+  .info-container {
+    display: flex;
+    justify-content: space-between;
+
+    .ctg_creator {
+      font-weight: lighter;
+    }
+
+    .ctg_updated {
+      display: flex;
+      font-weight: lighter;
+      align-items: center;
+    }
+
+  }
+
+}

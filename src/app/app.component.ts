@@ -3,6 +3,7 @@ import {AuthService} from "./auth/auth.service";
 import {Router} from "@angular/router";
 import {User} from "./models/user";
 import {UserService} from "./services/user/user.service";
+import {GlobalConstants} from "./common/global-constants";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
 
   constructor(public router: Router, userService: UserService) {
       this.user = userService.getCurrentUser();
+      GlobalConstants.currentUser = this.user;
   }
 
 }

@@ -1,6 +1,7 @@
 <ng-container *ngIf="(router.url != '/login' && router.url != '/logout')">
   <mat-toolbar>
     <span>{{title}}</span>
+    <mat-icon>check</mat-icon>
     <span class="spacer"></span>
 
     <!-- USER BUTTON -->
@@ -15,4 +16,7 @@
     </div>
   </mat-toolbar>
 </ng-container>
+
+<div class="p-1">
 <router-outlet></router-outlet>
+</div>

@@ -9,14 +9,13 @@ import {TokenService} from "../../auth/token.service";
   providedIn: 'root'
 })
 export class UserService {
-
+  private readonly apiUrl = environment.apiUrl;
 
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   login(username: string, pwd: string): Observable<string> {
-    let url = `${environment.apiUrl}/login`;
-    console.log(url)
+    let url = `${this.apiUrl}/login`;
     return this.http.post<string>(url, {login:username, password:pwd});
   }
 

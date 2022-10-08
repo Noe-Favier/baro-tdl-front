@@ -19,6 +19,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatListModule} from "@angular/material/list";
+import { CategoryComponent } from './components/category/category/category.component';
 
 @NgModule({
   declarations: [
@@ -26,24 +28,26 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     IndexComponent,
     LoginComponent,
     LogoutComponent,
+    CategoryComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatToolbarModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatListModule,
+    ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService

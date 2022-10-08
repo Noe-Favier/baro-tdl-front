@@ -3,6 +3,10 @@ import {CategoryPermission} from './category-permission.js'
 
 export interface Category {
   label: string,
-  permissions: CategoryPermission[],
+  UpdatedAt: string
+
+  creator: string,
+  code: string,
+
   elements: Element[],
 }

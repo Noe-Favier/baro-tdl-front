@@ -1,1 +1,38 @@
-<p>index works!</p>
+<mat-card>
+  <mat-card-title>My Lists</mat-card-title>
+  <mat-card-content>
+    <ng-container *ngIf="categories; else no_categories">
+      <mat-selection-list [multiple]="false">
+        <ng-container *ngFor="let category of categories">
+          <mat-list-option class="ctg_container" (click)="categorySelected(category.code)" [value]="category.code">
+            <div class="main-container">
+              <span class="ctg_name">{{category.label}}</span>
+              <span class="item-tracking">
+          <mat-icon>check_box</mat-icon>
+          <span>{{countCheckedElements(category.elements)}}/{{category.elements.length}}</span>
+        </span>
+            </div>
+            <div class="info-container">
+              <span><span class="ctg_creator">By </span><span>{{category.creator}}</span></span>
+              <span class="ctg_updated">
+          <mat-icon>update</mat-icon>
+          <span>{{category.UpdatedAt | date:'dd/LL HH:mm'}}</span>
+        </span>
+            </div>
+          </mat-list-option>
+        </ng-container>
+      </mat-selection-list>
+    </ng-container>
+  </mat-card-content>
+
+  <ng-template #no_categories>
+    <!-- if loading (>> categories === undefined), don't display the msg-->
+    <ng-container *ngIf="categories?.length == 0">
+      You don't have any :/
+    </ng-container>
+  </ng-template>
+
+</mat-card>
+
+
+

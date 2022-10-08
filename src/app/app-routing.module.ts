@@ -11,6 +11,7 @@ import {
   RoleGuardService as RoleGuard
 } from './auth/role-guard.service';
 import {LogoutComponent} from "./components/logout/logout.component";
+import {CategoryComponent} from "./components/category/category/category.component";
 // // // //
 
 const routes: Routes = [
@@ -29,13 +30,24 @@ const routes: Routes = [
     component: IndexComponent,
     canActivate: [RoleGuard],
     data: {
-      expectedRole: 'admin'
+      expectedRole: 'ADMIN'
+    }
+  },
+  {
+    path: 'category/:code',
+    component: CategoryComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: 'USER'
     }
   },
   {
     path: 'index',
     component: IndexComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: 'USER'
+    }
   },
   {path: '**', redirectTo: ''}
 ];
