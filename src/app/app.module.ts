@@ -17,6 +17,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LogoutComponent } from './components/logout/logout.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         FormsModule,
         HttpClientModule,
         MatProgressSpinnerModule,
+        MatCardModule,
     ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

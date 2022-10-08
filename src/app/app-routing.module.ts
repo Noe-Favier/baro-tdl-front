@@ -10,15 +10,19 @@ import {
 import {
   RoleGuardService as RoleGuard
 } from './auth/role-guard.service';
+import {LogoutComponent} from "./components/logout/logout.component";
 // // // //
 
 const routes: Routes = [
   {path: '', redirectTo: '/index', pathMatch: 'full'},
 
   {
-    path: 'index',
-    component: IndexComponent,
-    canActivate: [AuthGuard]
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   },
   {
     path: 'admin',
@@ -29,10 +33,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'index',
+    component: IndexComponent,
+    canActivate: [AuthGuard]
   },
-  { path: '**', redirectTo: '' }
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

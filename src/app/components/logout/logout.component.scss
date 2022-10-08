@@ -1,0 +1,19 @@
+.logout-content{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 30%;
+  align-items: center;
+  padding: 1%;
+  background-color: rgb(125 125 125 / 21%);
+  border-radius: 11%;
+}
+
+.master-logout-container{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

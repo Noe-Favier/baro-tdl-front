@@ -1,5 +1,7 @@
-<div>
-
-  <mat-spinner [value]="status"></mat-spinner>
-
+<div class="master-logout-container">
+  <div class="logout-content">
+    <p>You'll be disconected in {{statusSeconds}} seconds</p>
+    <mat-spinner [value]="statusPercent" [mode]="'determinate'"></mat-spinner>
+    <button mat-raised-button color="accent" (click)="cancelLogout()">cancel</button>
+  </div>
 </div>

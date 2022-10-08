@@ -9,27 +9,38 @@ import {Router} from "@angular/router";
 })
 export class LogoutComponent implements OnInit {
 
-  public status: number = 0;
+  public statusPercent: number = 0;
+  public statusSeconds: number = 0;
+
+  public maxTimeout: number = 3000;
+  public initialDate: number = 0;
+
+  private interval: number | undefined;
+  private timeout: number | undefined;
 
   constructor(private authService: AuthService, private router: Router) {
     this.authService.logout();
   }
 
   ngOnInit(): void {
-    let router: Router = this.router;
-    let status = this.status;
-    let maxTimeout: number = 3000;
+    this.initialDate = Date.now();
 
-    this.authService.logout();
-    console.log('removed item')
-    let initialDate = new Date();
-    let timeout = setTimeout(function () {
-      router.navigateByUrl('/login');
-    }, maxTimeout);
-    let interval: number = setInterval(function () {
-      status = (new Date().getMilliseconds() - initialDate.getMilliseconds())*100/maxTimeout;
-    });
+    this.timeout = setTimeout(() => {
+      clearTimeout(this.timeout);
+      clearInterval(this.interval);
+      this.router.navigateByUrl('/login');
+    }, this.maxTimeout);
+
+    this.interval = setInterval(() => {
+      this.statusPercent = (Date.now() - this.initialDate + 1000) * 100 / this.maxTimeout;
+      this.statusSeconds = Math.floor(this.maxTimeout / 1000 - ((Date.now() - this.initialDate) / 1000));
+    }, 100);
   }
 
 
+  cancelLogout() {
+    clearTimeout(this.timeout);
+    clearInterval(this.interval);
+    this.router.navigateByUrl('/index');
+  }
 }
