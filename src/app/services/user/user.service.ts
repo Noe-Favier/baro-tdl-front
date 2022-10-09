@@ -15,7 +15,7 @@ export class UserService {
 
   constructor(private http: HttpClient, private tokenService: TokenService, private router: Router) { }
 
-  login(username: string, pwd: string): Observable<string> {
+  login(username: string, pwd: string): Observable<any> {
     let url = `${this.apiUrl}/login`;
     return this.http.post<string>(url, {login:username, password:pwd});
   }

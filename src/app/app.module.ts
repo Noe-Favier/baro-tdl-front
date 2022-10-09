@@ -26,6 +26,8 @@ import { AddFriendComponent } from './components/category/category/modal/add-fri
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatDialogModule,
         MatAutocompleteModule,
         MatTooltipModule,
+        MatSidenavModule,
+        MatSnackBarModule,
     ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

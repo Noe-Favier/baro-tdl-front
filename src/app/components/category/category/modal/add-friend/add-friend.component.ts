@@ -7,6 +7,7 @@ import {map, startWith} from 'rxjs/operators';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Category} from "../../../../../models/category";
 import {CategoryService} from "../../../../../services/category/category.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-friend',
@@ -22,18 +23,24 @@ export class AddFriendComponent implements OnInit {
 
   public currentUser: User;
 
-  constructor(private userService: UserService, public dialogRef: MatDialogRef<AddFriendComponent>, @Inject(MAT_DIALOG_DATA) public data: Category, private categoryService: CategoryService) {
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, public dialogRef: MatDialogRef<AddFriendComponent>, @Inject(MAT_DIALOG_DATA) public data: Category, private categoryService: CategoryService) {
     this.currentUser = userService.getCurrentUser() as User;
   }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(e => {
-      this.users = e;
-      this._userControl = new FormControl('', [this.validUsername(this.users), Validators.required]);
-      this.filteredOptions = this._userControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value || '')),
-      );
+    this.userService.getAllUsers().subscribe({
+      next: e => {
+        this.users = e;
+        this._userControl = new FormControl('', [this.validUsername(this.users), Validators.required]);
+        this.filteredOptions = this._userControl.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value || '')),
+        );
+      },
+      error: err => {
+        let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
+        this._snackBar.open(errorMsg, 'ok');
+      }
     });
 
 
@@ -58,7 +65,7 @@ export class AddFriendComponent implements OnInit {
     }
   }
 
-  get userControl(): FormControl{
+  get userControl(): FormControl {
     return this._userControl as FormControl;
   }
 
@@ -68,16 +75,28 @@ export class AddFriendComponent implements OnInit {
   }
 
   cantValidate() {
-    return (this.selectedUsers.length==0 && this.userControl?.invalid);
+    return (this.selectedUsers.length == 0 && this.userControl?.invalid);
   }
 
   validate() {
-    this.categoryService.replaceLinkedUsersBy(this.selectedUsers, this.data.code).subscribe(e=>{
-      if(e.message != "success"){
-        console.log("error");
-      }else{
-        this.dialogRef.close();
+
+    if(this.userControl.valid){
+      this.selectedUsers.push(this.userControl.value);
+    }
+
+    this.categoryService.replaceLinkedUsersBy(this.selectedUsers, this.data.code).subscribe({
+      next: e => {
+        if (e.message != "success") {
+          let errorMsg: string = e.errorMsg != undefined ? e.errorMsg : e.message;
+          this._snackBar.open(errorMsg);
+        } else {
+          this.dialogRef.close();
+        }
+      },
+      error: err => {
+        let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
+        this._snackBar.open(errorMsg, 'ok');
       }
-    });
+    })
   }
 }

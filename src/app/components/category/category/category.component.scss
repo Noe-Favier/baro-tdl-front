@@ -1,17 +1,42 @@
-.title{font-size: 250%}
+.title {
+  font-size: 250%
+}
 
-.actions{
-  display: flex;
-  margin-bottom: 2%;
-  span{
-    padding-left: 10px;
-  }
-  button{
-    margin-left: 1em;
+.drawer-container{
+  /*
+  toolbar = 64px + padding = 20px (10px *2)
+  */
+  height: calc(calc(100vh - 84px));
+
+  mat-drawer{
+    width: 30%;
+    padding: 1%;
+
+    mat-card{
+      margin: 1%;
+    }
   }
 }
 
-.text-icon-button{
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+
+  .actions {
+    display: flex;
+    margin-bottom: 2%;
+
+    span {
+      padding-left: 10px;
+    }
+
+    button {
+      margin: 0 1em;
+    }
+  }
+}
+
+.text-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,30 +1,56 @@
-<span class="actions">
-  <button mat-stroked-button color="primary" aria-label="get back to menu" (click)="getBackToIndex()"
-          class="text-icon-button">
-    <mat-icon>home</mat-icon>
-    <span>menu</span>
-  </button>
+<mat-drawer-container class="drawer-container">
+  <mat-drawer mode="side" opened position="end" #drawer>
 
-  <div matTooltip="You can't add users to a list you don't own"
-       [matTooltipDisabled]="category?.creator == user.username">
-    <button mat-stroked-button color="primary" aria-label="get back to menu"
-            (click)="showAddFriendDialog()"
-            [disabled]="category?.creator != user.username"
-            class="text-icon-button">
-      <mat-icon>group_add</mat-icon>
-      <span>add people</span>
-    </button>
-  </div>
+    <ng-container *ngIf="category">
+      <mat-card>
+        <mat-card-title>Actions</mat-card-title>
+        <button mat-raised-button color="primary">add element</button>
+      </mat-card>
+    </ng-container>
 
+    <ng-container *ngIf="category">
+      <mat-card>
+        <mat-card-title>User{{category.users.length > 1 ? 's' : ''}} that have access to this list</mat-card-title>
+        <ul *ngFor="let user of category?.users">
+          <li>{{user.username}}</li>
+        </ul>
+      </mat-card>
+    </ng-container>
+  </mat-drawer>
+  <mat-drawer-content>
+    <span class="actions-container">
+      <span class="actions">
+      <button mat-stroked-button color="primary" aria-label="get back to menu" (click)="getBackToIndex()"
+              class="text-icon-button">
+        <mat-icon>home</mat-icon>
+        <span>menu</span>
+      </button>
 
-</span>
-
-<div class="title">{{category?.label}}</div>
-<ng-container *ngIf="category">
-  <div *ngFor="let element of category.elements">
-    <p>
-      <mat-checkbox color="primary" [checked]="element.checked" [(ngModel)]="elementsModel[element.code]"
-                    (change)="check(element.code, elementsModel[element.code])">{{element.label}}</mat-checkbox>
-    </p>
-  </div>
-</ng-container>
+      <div matTooltip="You can't add users to a list you don't own"
+           [matTooltipDisabled]="category?.creator == user.username">
+        <button mat-stroked-button color="primary" aria-label="get back to menu"
+                (click)="showAddFriendDialog()"
+                [disabled]="category?.creator != user.username"
+                class="text-icon-button">
+          <mat-icon>group_add</mat-icon>
+          <span>add people</span>
+        </button>
+      </div>
+        </span>
+      <span class="actions">
+        <button mat-icon-button color="primary" aria-label="open sidenav" (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </span>
+    </span>
+    <div class="title">{{category?.label}}</div>
+    <ng-container *ngIf="category">
+      <div *ngFor="let element of category.elements">
+        <p>
+          <mat-checkbox color="primary" [checked]="element.checked" [(ngModel)]="elementsModel[element.code]"
+                        (change)="check(element.code, elementsModel[element.code])">{{element.label}}</mat-checkbox>
+        </p>
+      </div>
+    </ng-container>
+  </mat-drawer-content>
+</mat-drawer-container>

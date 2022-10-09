@@ -6,6 +6,7 @@ import {ElementService} from "../../services/element/element.service";
 import {Element} from "../../models/element";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user/user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-index',
@@ -16,13 +17,19 @@ export class IndexComponent implements OnInit {
   public categories: Category[] | undefined;
   public user: User;
 
-  constructor(public router: Router, private categoryService: CategoryService, private elementService: ElementService, userService: UserService) {
+  constructor(private _snackBar: MatSnackBar, public router: Router, private categoryService: CategoryService, private elementService: ElementService, userService: UserService) {
     this.user = userService.getCurrentUser() as User;
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategoriesByUser(this.user.username).subscribe(e => {
-      this.categories = e;
+    this.categoryService.getCategoriesByUser(this.user.username).subscribe({
+      next: e => {
+        this.categories = e;
+      },
+      error: err => {
+        let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
+        this._snackBar.open(errorMsg, 'ok');
+      }
     })
   }
 

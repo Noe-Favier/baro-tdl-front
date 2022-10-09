@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddFriendComponent} from "./modal/add-friend/add-friend.component";
 import {User} from "../../../models/user";
 import {UserService} from "../../../services/user/user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-category',
@@ -18,28 +19,48 @@ export class CategoryComponent implements OnInit {
   public category: Category | undefined;
   elementsModel: any = {};
 
-  constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute, private categoryService: CategoryService, private elementService: ElementService, private userService: UserService) {
+  private categoryCode: string = '';
+
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private router: Router, private route: ActivatedRoute, private categoryService: CategoryService, private elementService: ElementService, private userService: UserService) {
     this.user = this.userService.getCurrentUser() as User;
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(e => {
-      this.categoryService.getCategoryById(e.get('code')).subscribe(ctg => {
+      this.categoryCode = e.get('code') as string;
+      this.updateCategory();
+    });
+  }
+
+  check(code: string, state: boolean) {
+    this.elementService.check(code, state).subscribe({
+      next: e => {
+        if (e.message != "success") {
+          let errorMsg: string = e.errorMsg != undefined ? e.errorMsg : e.message;
+          this._snackBar.open(errorMsg);
+        }
+      },
+      error: err => {
+        let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
+        this._snackBar.open(errorMsg, 'ok');
+      }
+    });
+
+  }
+
+  updateCategory(){
+    this.categoryService.getCategoryById(this.categoryCode).subscribe({
+      next: ctg => {
         this.category = ctg;
         ctg.elements.forEach(e => {
           this.elementsModel[e.code] = e.checked;
         })
-      })
-    })
-  }
-
-  check(code: string, state: boolean) {
-    this.elementService.check(code, state).subscribe(e => {
-      if (e.message != "success") {
-        console.log("error");
+      },
+      error: err => {
+        let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
+        this._snackBar.open(errorMsg, 'ok');
       }
-    });
-
+    })
   }
 
   getBackToIndex() {
@@ -50,11 +71,12 @@ export class CategoryComponent implements OnInit {
     const dialogRef = this.dialog.open(AddFriendComponent, {
       width: '60vw',
       height: '60vh',
-      data:this.category
+      data: this.category
     });
 
     dialogRef.afterClosed().subscribe(result => {
       //nothing atm
+      this.updateCategory();
     });
   }
 }
