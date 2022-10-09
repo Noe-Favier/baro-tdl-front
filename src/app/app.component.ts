@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./auth/auth.service";
-import {Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
 import {User} from "./models/user";
 import {UserService} from "./services/user/user.service";
-import {GlobalConstants} from "./common/global-constants";
 
 @Component({
   selector: 'app-root',
@@ -14,9 +13,20 @@ export class AppComponent {
   title = 'Baro\'s TodoList';
   public user: User | undefined;
 
-  constructor(public router: Router, userService: UserService) {
-      this.user = userService.getCurrentUser();
-      GlobalConstants.currentUser = this.user;
+  constructor(public readonly router: Router, private readonly userService: UserService) {
+    this.checkUser();
+    router.events.forEach((event) => {
+        this.checkUser();
+    });
   }
 
+  checkUser(){
+    if(this.router.url != '/login' && this.router.url != '/logout'){
+      this.user = this.userService.getCurrentUser();
+      if (this.user === undefined) { //user can't be read from token
+        this.userService.logout(); //delete token
+        this.router.navigateByUrl('/login'); //login user
+      }
+    }
+  }
 }

@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category/category.service";
 import {User} from "../../models/user";
-import {GlobalConstants} from "../../common/global-constants";
 import {ElementService} from "../../services/element/element.service";
 import {Element} from "../../models/element";
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'app-index',
@@ -14,9 +14,10 @@ import {Router} from "@angular/router";
 })
 export class IndexComponent implements OnInit {
   public categories: Category[] | undefined;
-  public user: User = GlobalConstants.currentUser as User;
+  public user: User;
 
-  constructor(public router: Router, private categoryService: CategoryService, private elementService: ElementService) {
+  constructor(public router: Router, private categoryService: CategoryService, private elementService: ElementService, userService: UserService) {
+    this.user = userService.getCurrentUser() as User;
   }
 
   ngOnInit(): void {

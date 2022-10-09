@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../auth/auth.service";
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'app-logout',
@@ -18,7 +18,7 @@ export class LogoutComponent implements OnInit {
   private interval: number | undefined;
   private timeout: number | undefined;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,7 +27,9 @@ export class LogoutComponent implements OnInit {
     this.timeout = setTimeout(() => {
       clearTimeout(this.timeout);
       clearInterval(this.interval);
+      this.userService.logout();
       this.router.navigateByUrl('/login');
+
     }, this.maxTimeout);
 
     this.interval = setInterval(() => {

@@ -25,6 +25,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AddFriendComponent } from './components/category/category/modal/add-friend/add-friend.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -36,26 +37,27 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     AddFriendComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatListModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatAutocompleteModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatListModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatAutocompleteModule,
+        MatTooltipModule,
+    ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService

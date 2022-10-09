@@ -5,11 +5,16 @@
     <span>menu</span>
   </button>
 
-  <button mat-stroked-button color="primary" aria-label="get back to menu" (click)="showAddFriendDialog()"
-          class="text-icon-button">
-    <mat-icon>group_add</mat-icon>
-    <span>add people</span>
-  </button>
+  <div matTooltip="You can't add users to a list you don't own"
+       [matTooltipDisabled]="category?.creator == user.username">
+    <button mat-stroked-button color="primary" aria-label="get back to menu"
+            (click)="showAddFriendDialog()"
+            [disabled]="category?.creator != user.username"
+            class="text-icon-button">
+      <mat-icon>group_add</mat-icon>
+      <span>add people</span>
+    </button>
+  </div>
 
 
 </span>

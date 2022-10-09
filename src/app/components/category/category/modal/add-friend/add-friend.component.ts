@@ -4,8 +4,7 @@ import {UserService} from "../../../../../services/user/user.service";
 import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {GlobalConstants} from "../../../../../common/global-constants";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Category} from "../../../../../models/category";
 import {CategoryService} from "../../../../../services/category/category.service";
 
@@ -21,8 +20,10 @@ export class AddFriendComponent implements OnInit {
 
   public selectedUsers: string[] = [];
 
-  constructor(private userService: UserService, @Inject(MAT_DIALOG_DATA) public data: Category, private categoryService: CategoryService) {
+  public currentUser: User;
 
+  constructor(private userService: UserService, public dialogRef: MatDialogRef<AddFriendComponent>, @Inject(MAT_DIALOG_DATA) public data: Category, private categoryService: CategoryService) {
+    this.currentUser = userService.getCurrentUser() as User;
   }
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class AddFriendComponent implements OnInit {
   private _filter(username: string): User[] {
     const filterValue = username.toLowerCase();
 
-    return this.users.filter(option => option.username.toLowerCase().includes(filterValue) && !this.selectedUsers.includes(option.username) && option.username !== GlobalConstants.currentUser?.username)
+    return this.users.filter(option => option.username.toLowerCase().includes(filterValue) && !this.selectedUsers.includes(option.username) && option.username !== this.currentUser.username)
   }
 
   validUsername(users: User[]): ValidatorFn {
@@ -74,6 +75,8 @@ export class AddFriendComponent implements OnInit {
     this.categoryService.replaceLinkedUsersBy(this.selectedUsers, this.data.code).subscribe(e=>{
       if(e.message != "success"){
         console.log("error");
+      }else{
+        this.dialogRef.close();
       }
     });
   }

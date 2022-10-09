@@ -14,8 +14,4 @@ export class AuthService {
     // true or false
     return !this.jwtHelper.isTokenExpired(this.tokenService.getToken());
   }
-
-  public logout(): void {
-    this.tokenService.deleteToken();
-  }
 }
