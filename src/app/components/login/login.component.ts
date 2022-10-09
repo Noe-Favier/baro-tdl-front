@@ -28,7 +28,11 @@ export class LoginComponent implements OnInit {
           //API returns the JWT token
           //logins are good !
           this.tokenService.setToken(e.token);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/').then(e=>{
+            if (!e){
+              window.location.reload();
+            }
+          });
         },
         error: err => {
           //logins arren't good
