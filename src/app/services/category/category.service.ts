@@ -18,4 +18,14 @@ export class CategoryService {
     let url = `${this.apiUrl}/user/${username}/categories`;
     return this.http.get<Category[]>(url);
   }
+
+  getCategoryById(code: string | null): Observable<Category> {
+    let url = `${this.apiUrl}/category/by/${code}`;
+    return this.http.get<Category>(url);
+  }
+
+  replaceLinkedUsersBy(usernames: string[], code:string): Observable<any> {
+    let url = `${this.apiUrl}/category/link/user`;
+    return this.http.post<any>(url,{usernames:usernames, category_code:code});
+  }
 }

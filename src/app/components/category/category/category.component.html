@@ -1,1 +1,25 @@
-<p>category works!</p>
+<span class="actions">
+  <button mat-stroked-button color="primary" aria-label="get back to menu" (click)="getBackToIndex()"
+          class="text-icon-button">
+    <mat-icon>home</mat-icon>
+    <span>menu</span>
+  </button>
+
+  <button mat-stroked-button color="primary" aria-label="get back to menu" (click)="showAddFriendDialog()"
+          class="text-icon-button">
+    <mat-icon>group_add</mat-icon>
+    <span>add people</span>
+  </button>
+
+
+</span>
+
+<div class="title">{{category?.label}}</div>
+<ng-container *ngIf="category">
+  <div *ngFor="let element of category.elements">
+    <p>
+      <mat-checkbox color="primary" [checked]="element.checked" [(ngModel)]="elementsModel[element.code]"
+                    (change)="check(element.code, elementsModel[element.code])">{{element.label}}</mat-checkbox>
+    </p>
+  </div>
+</ng-container>

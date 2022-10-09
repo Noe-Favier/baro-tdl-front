@@ -22,4 +22,9 @@ export class UserService {
   getCurrentUser(): User {
     return this.tokenService.getDecodedToken().user as User;
   }
+
+  getAllUsers(): Observable<User[]> {
+    let url = `${this.apiUrl}/user`;
+    return this.http.get<User[]>(url);
+  }
 }

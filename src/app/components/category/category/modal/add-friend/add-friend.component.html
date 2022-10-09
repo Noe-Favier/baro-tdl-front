@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Add people to this list</h1>
+<div class="add-friend-container" *ngIf="_userControl != undefined">
+
+  <div mat-dialog-content class="w100">
+    <mat-form-field class="w100" appearance="fill">
+      <mat-label>User</mat-label>
+      <input type="text"
+             placeholder="select one"
+             aria-label="User to be Added"
+             matInput
+             [formControl]="userControl"
+             spellcheck="false"
+             [matAutocomplete]="auto"
+             [matAutocompletePosition]="'above'"
+      >
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let usr of filteredOptions | async" [value]="usr.username">
+          {{usr.username}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div *ngIf="userControl.invalid && (userControl.dirty || userControl.touched)" class="alert">
+      <div *ngIf="userControl.errors != null && userControl.errors['required']; else unknown">
+        Please enter username
+      </div>
+      <ng-template #unknown>
+        <ng-container *ngIf="userControl.errors != null && userControl.errors['invalidUsername']">
+          this username doesn't exists !
+        </ng-container>
+      </ng-template>
+    </div>
+    <mat-divider></mat-divider>
+    <span>friends will have full access on the list</span>
+    <ng-container *ngIf="selectedUsers && selectedUsers.length >= 1" class="warn">
+      <ul>
+        <ng-container *ngFor="let usrname of selectedUsers">
+          <li>{{usrname}}</li>
+        </ng-container>
+      </ul>
+    </ng-container>
+  </div>
+</div>
+<div mat-dialog-actions>
+
+  <button mat-raised-button color="accent" (click)="addMore(userControl.value)" [disabled]="userControl?.invalid">
+    add more
+  </button>
+  <button mat-raised-button color="primary" [disabled]="cantValidate()" (click)="validate()">Ok !</button>
+
+</div>
