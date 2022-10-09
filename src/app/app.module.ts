@@ -30,6 +30,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import { AddElementComponent } from './components/category/category/modal/add-element/add-element.component';
 import {MatMenuModule} from "@angular/material/menu";
+import { AddCategoryComponent } from './components/index/modal/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {MatMenuModule} from "@angular/material/menu";
     CategoryComponent,
     AddFriendComponent,
     AddElementComponent,
+    AddCategoryComponent,
 
   ],
   imports: [

@@ -1,4 +1,8 @@
 <mat-card>
+  <button mat-raised-button color="primary" (click)="showAddCategoryDialog()">New List</button>
+</mat-card>
+
+<mat-card>
   <mat-card-title>My Lists</mat-card-title>
   <mat-card-content>
     <ng-container *ngIf="categories; else no_categories">
@@ -26,7 +30,7 @@
   </mat-card-content>
 
   <ng-template #no_categories>
-    <!-- if loading (>> categories === undefined), don't display the msg-->
+    <!-- if waiting for subscription (>> categories === undefined), don't display the msg-->
     <ng-container *ngIf="categories?.length == 0">
       You don't have any :/
     </ng-container>

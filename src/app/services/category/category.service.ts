@@ -28,4 +28,9 @@ export class CategoryService {
     let url = `${this.apiUrl}/category/link/user`;
     return this.http.post<any>(url,{usernames:usernames, category_code:code});
   }
+
+  addCategory(label: string, username: string): Observable<any>{
+    let url = `${this.apiUrl}/category`;
+    return this.http.post<any>(url,{label:label, creator:username});
+  }
 }

@@ -76,7 +76,6 @@ export class CategoryComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //nothing atm
       this.updateCategory();
     });
   }
@@ -89,7 +88,6 @@ export class CategoryComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //nothing atm
       this.updateCategory();
     });
   }
