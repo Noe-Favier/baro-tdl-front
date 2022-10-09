@@ -31,7 +31,8 @@
       </ng-template>
     </div>
     <mat-divider></mat-divider>
-    <span>friends will have full access on the list</span>
+    <p>friends will have full access on the list</p>
+    <p>that selection will replace the current one</p>
     <ng-container *ngIf="selectedUsers && selectedUsers.length >= 1" class="warn">
       <ul>
         <ng-container *ngFor="let usrname of selectedUsers">

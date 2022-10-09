@@ -8,6 +8,7 @@ import {AddFriendComponent} from "./modal/add-friend/add-friend.component";
 import {User} from "../../../models/user";
 import {UserService} from "../../../services/user/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AddElementComponent} from "./modal/add-element/add-element.component";
 
 @Component({
   selector: 'app-category',
@@ -70,7 +71,20 @@ export class CategoryComponent implements OnInit {
   showAddFriendDialog() {
     const dialogRef = this.dialog.open(AddFriendComponent, {
       width: '60vw',
-      height: '60vh',
+      height: '45vh',
+      data: this.category
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //nothing atm
+      this.updateCategory();
+    });
+  }
+
+  showAddElementDialog() {
+    const dialogRef = this.dialog.open(AddElementComponent, {
+      width: '60vw',
+      height: '45vh',
       data: this.category
     });
 

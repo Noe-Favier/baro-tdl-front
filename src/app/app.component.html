@@ -6,13 +6,22 @@
 
     <!-- USER BUTTON -->
     <div *ngIf="user != undefined">
-      <button mat-stroked-button aria-label="navbar button 'account'">
+      <button mat-stroked-button aria-label="navbar button 'account'" [matMenuTriggerFor]="menu">
         <div class="text-icon-button">
           <mat-icon>person</mat-icon>
           {{user.username}}
         </div>
       </button>
-
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="clickedGitHub()">
+          <mat-icon>cloud_queue</mat-icon>
+          github
+        </button>
+        <button mat-menu-item (click)="clickedLogout()">
+          <mat-icon>power_settings_new</mat-icon>
+          logout
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar>
 </ng-container>

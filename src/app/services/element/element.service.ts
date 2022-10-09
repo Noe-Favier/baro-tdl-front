@@ -20,4 +20,9 @@ export class ElementService {
     let url = `${this.apiUrl}/element/check`;
     return this.http.post<any>(url, {code:code, state:state});
   }
+
+  addToCategory(ctgCode: string, label: string, username: string): Observable<any>{
+    let url = `${this.apiUrl}/element`;
+    return this.http.post<any>(url, {code:ctgCode, label:label, creator:username});
+  }
 }

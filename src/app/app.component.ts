@@ -29,4 +29,13 @@ export class AppComponent {
       }
     }
   }
+
+  clickedLogout(){
+    this.router.navigateByUrl('/logout');
+  }
+
+  clickedGitHub(){
+    let url: string = 'https://github.com/Noe-Favier/baro-tdl-front';
+    window.open(url,'_blank');
+  }
 }

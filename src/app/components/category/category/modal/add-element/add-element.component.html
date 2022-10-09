@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Add a new element</h1>
+<form class="form-container" [formGroup]="element" (ngSubmit)="validate(labelControl.value)">
+  <mat-form-field appearance="fill" class="field">
+    <mat-label>Label</mat-label>
+    <input matInput type="text" placeholder="Ex. clean my car" [formControl]="labelControl">
+    <mat-error *ngIf="labelControl.invalid">You need to add a label !</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" type="submit">Ok!</button>
+</form>

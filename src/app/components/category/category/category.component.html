@@ -4,15 +4,15 @@
     <ng-container *ngIf="category">
       <mat-card>
         <mat-card-title>Actions</mat-card-title>
-        <button mat-raised-button color="primary">add element</button>
+        <button mat-raised-button color="primary" (click)="showAddElementDialog()">add element</button>
       </mat-card>
     </ng-container>
 
     <ng-container *ngIf="category">
       <mat-card>
         <mat-card-title>User{{category.users.length > 1 ? 's' : ''}} that have access to this list</mat-card-title>
-        <ul *ngFor="let user of category?.users">
-          <li>{{user.username}}</li>
+        <ul *ngFor="let usr of category?.users">
+          <li>{{usr.username}} <em>{{usr.username === user.username ? '(you)' :''}}</em></li>
         </ul>
       </mat-card>
     </ng-container>

@@ -28,6 +28,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { AddElementComponent } from './components/category/category/modal/add-element/add-element.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -37,31 +39,33 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     LogoutComponent,
     CategoryComponent,
     AddFriendComponent,
+    AddElementComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatSliderModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatDialogModule,
-        MatAutocompleteModule,
-        MatTooltipModule,
-        MatSidenavModule,
-        MatSnackBarModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSliderModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatTooltipModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatMenuModule,
+  ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService
