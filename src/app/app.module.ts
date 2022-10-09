@@ -27,10 +27,11 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { AddElementComponent } from './components/category/category/modal/add-element/add-element.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { AddCategoryComponent } from './components/index/modal/add-category/add-category.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AddCategoryComponent } from './components/index/modal/add-category/add-
     AddFriendComponent,
     AddElementComponent,
     AddCategoryComponent,
+    SignUpComponent,
 
   ],
   imports: [
@@ -75,3 +77,4 @@ import { AddCategoryComponent } from './components/index/modal/add-category/add-
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

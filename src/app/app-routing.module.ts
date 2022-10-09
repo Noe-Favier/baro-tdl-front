@@ -2,6 +2,9 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {IndexComponent} from "./components/index/index.component";
 import {LoginComponent} from "./components/login/login.component";
+import {LogoutComponent} from "./components/logout/logout.component";
+import {CategoryComponent} from "./components/category/category/category.component";
+import {SignUpComponent} from "./components/sign-up/sign-up.component";
 
 // GUARDS //
 import {
@@ -10,13 +13,15 @@ import {
 import {
   RoleGuardService as RoleGuard
 } from './auth/role-guard.service';
-import {LogoutComponent} from "./components/logout/logout.component";
-import {CategoryComponent} from "./components/category/category/category.component";
 // // // //
 
 const routes: Routes = [
   {path: '', redirectTo: '/index', pathMatch: 'full'},
 
+  {
+    path: 'signup',
+    component: SignUpComponent
+  },
   {
     path: 'login',
     component: LoginComponent

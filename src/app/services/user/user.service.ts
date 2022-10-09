@@ -24,6 +24,11 @@ export class UserService {
     this.tokenService.deleteToken();
   }
 
+  signup(username: string, pwd: string, email: string){
+    let url = `${this.apiUrl}/user`;
+    return this.http.post<string>(url, {username:username, password:pwd, email: email});
+  }
+
   getCurrentUser(): User | undefined {
     try {
       return this.tokenService.getDecodedToken().user as User;

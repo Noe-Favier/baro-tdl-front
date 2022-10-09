@@ -12,7 +12,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar, private userService: UserService, private router: Router, private tokenService: TokenService) {
+  constructor(
+    private _snackBar: MatSnackBar,
+    private userService: UserService,
+    public router: Router,
+    private tokenService: TokenService
+  ) {
   }
 
   usernameControl: FormControl = new FormControl('', [Validators.required]);
@@ -22,9 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log("login")
     if (this.passwdControl.valid && this.usernameControl.valid) {
       this.userService.login(this.usernameControl.value, this.passwdControl.value).subscribe({
         next: e => {
+          console.log('ok')
           //API returns the JWT token
           //logins are good !
           this.tokenService.setToken(e.token);
@@ -35,11 +42,24 @@ export class LoginComponent implements OnInit {
           });
         },
         error: err => {
+          console.log('nok')
           //logins arren't good
           let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
           this._snackBar.open(errorMsg, 'ok');
         }
       });
     }
+  }
+
+  signup() {
+    console.log('signup')
+    this.router.navigateByUrl('/signup').then(e=>{
+      if(!e){
+        console.log('nok')
+        window.location.reload();
+      }else{
+        console.log('ok')
+      }
+    });
   }
 }
