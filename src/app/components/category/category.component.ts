@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {CategoryService} from "../../../services/category/category.service";
-import {Category} from "../../../models/category";
-import {ElementService} from "../../../services/element/element.service";
+import {CategoryService} from "../../services/category/category.service";
+import {Category} from "../../models/category";
+import {ElementService} from "../../services/element/element.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddFriendComponent} from "./modal/add-friend/add-friend.component";
-import {User} from "../../../models/user";
-import {UserService} from "../../../services/user/user.service";
+import {User} from "../../models/user";
+import {UserService} from "../../services/user/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AddElementComponent} from "./modal/add-element/add-element.component";
 

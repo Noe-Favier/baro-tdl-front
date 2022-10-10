@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {User} from "../../../../../models/user";
-import {UserService} from "../../../../../services/user/user.service";
+import {User} from "../../../../models/user";
+import {UserService} from "../../../../services/user/user.service";
 import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Category} from "../../../../../models/category";
-import {CategoryService} from "../../../../../services/category/category.service";
+import {Category} from "../../../../models/category";
+import {CategoryService} from "../../../../services/category/category.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

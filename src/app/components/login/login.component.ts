@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     if (this.passwdControl.valid && this.usernameControl.valid) {
       this.userService.login(this.usernameControl.value, this.passwdControl.value).subscribe({
         next: e => {
-          console.log('ok')
           //API returns the JWT token
           //logins are good !
           this.tokenService.setToken(e.token);
@@ -42,7 +41,6 @@ export class LoginComponent implements OnInit {
           });
         },
         error: err => {
-          console.log('nok')
           //logins arren't good
           let errorMsg: string = err.error.errorMsg != undefined ? err.error.errorMsg : err.error.message;
           this._snackBar.open(errorMsg, 'ok');

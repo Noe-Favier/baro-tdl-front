@@ -7,7 +7,7 @@ import {Element} from "../../models/element";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AddElementComponent} from "../category/category/modal/add-element/add-element.component";
+import {AddElementComponent} from "../category/modal/add-element/add-element.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddCategoryComponent} from "./modal/add-category/add-category.component";
 

@@ -1,0 +1,24 @@
+.master-signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 99vw;
+  height: 90vh;
+  align-items: center;
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width:40%;
+  }
+}
+
+.signup-btn{
+  margin-top: 1em 0;
+}
+
+mat-divider{
+  margin: 1em 0;
+}

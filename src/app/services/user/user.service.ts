@@ -24,7 +24,7 @@ export class UserService {
     this.tokenService.deleteToken();
   }
 
-  signup(username: string, pwd: string, email: string){
+  signup(username: string, pwd: string, email: string): Observable<any>{
     let url = `${this.apiUrl}/user`;
     return this.http.post<string>(url, {username:username, password:pwd, email: email});
   }

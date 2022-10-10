@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {IndexComponent} from "./components/index/index.component";
 import {LoginComponent} from "./components/login/login.component";
 import {LogoutComponent} from "./components/logout/logout.component";
-import {CategoryComponent} from "./components/category/category/category.component";
+import {CategoryComponent} from "./components/category/category.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
 
 // GUARDS //
@@ -17,7 +17,6 @@ import {
 
 const routes: Routes = [
   {path: '', redirectTo: '/index', pathMatch: 'full'},
-
   {
     path: 'signup',
     component: SignUpComponent
@@ -28,14 +27,18 @@ const routes: Routes = [
   },
   {
     path: 'logout',
-    component: LogoutComponent
+    component: LogoutComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: 'USER'
+    }
   },
   {
     path: 'admin',
     component: IndexComponent,
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard, RoleGuard],
     data: {
-      expectedRole: 'ADMIN'
+      expectedRole: 'USER'
     }
   },
   {

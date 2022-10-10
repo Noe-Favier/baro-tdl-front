@@ -21,18 +21,7 @@ export class AppComponent {
   }
 
   checkUser(){
-    console.log('check on : '+this.router.url);
-    if(
-      this.router.url != '/login' &&
-      this.router.url != '/logout' &&
-      this.router.url != '/signup'
-    ){
-      this.user = this.userService.getCurrentUser();
-      if (this.user === undefined) { //user can't be read from token
-        this.userService.logout(); //delete token
-        this.router.navigateByUrl('/login'); //login user
-      }
-    }
+    this.user = this.userService.getCurrentUser();
   }
 
   clickedLogout(){

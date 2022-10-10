@@ -1,1 +1,54 @@
-<p>sign-up works!</p>
+<div class="master-signup-container">
+  <h1>SignUp</h1>
+
+  <form class="signup-form" ngForm [formGroup]="formSignup">
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="" [formControl]="usernameControl">
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="emailControl.hasError('required')">
+        Username is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="" type="email" [formControl]="emailControl">
+      <mat-icon matSuffix>alternate_email</mat-icon>
+      <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="" type="password" [formControl]="passwdControl" #p1>
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf="emailControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password Check</mat-label>
+      <input matInput placeholder="" type="password" [formControl]="passwdCheckControl" #p2>
+      <mat-icon matSuffix>cached</mat-icon>
+      <mat-error *ngIf="passwdCheckControl.hasError('required')">
+        Please, confirm your password
+      </mat-error>
+      <mat-error *ngIf="passwdCheckControl.hasError('invalidPsswds')">
+        Passwords don't match !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <button mat-raised-button color="primary" (click)="signup()">Signup</button>
+    <p>or login <a routerLink="/login"><em>here</em></a></p>
+  </form>
+</div>

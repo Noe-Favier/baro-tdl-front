@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UserService} from "../../../../../services/user/user.service";
+import {UserService} from "../../../../services/user/user.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Category} from "../../../../../models/category";
-import {CategoryService} from "../../../../../services/category/category.service";
-import {User} from "../../../../../models/user";
-import {ElementService} from "../../../../../services/element/element.service";
+import {Category} from "../../../../models/category";
+import {CategoryService} from "../../../../services/category/category.service";
+import {User} from "../../../../models/user";
+import {ElementService} from "../../../../services/element/element.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
