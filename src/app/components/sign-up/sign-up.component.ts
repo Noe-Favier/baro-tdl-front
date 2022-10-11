@@ -54,7 +54,12 @@ export class SignUpComponent implements OnInit {
             let errorMsg: string = e.errorMsg != undefined ? e.errorMsg : e.message;
             this._snackBar.open(errorMsg);
           } else {
-            this.router.navigateByUrl('/login')
+            if (e.token != '') {
+              this.tokenService.setToken(e.token);
+              this.router.navigateByUrl('/');
+            } else {
+              this.router.navigateByUrl('/login');
+            }
           }
         },
         error: err => {
